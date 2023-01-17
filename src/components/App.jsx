@@ -4,6 +4,7 @@ import GlobalStyle from '../styles/globalStyles';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Login from '../pages/Login';
 import Register from '../pages/Register';
+import Home from '../pages/Home';
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Login />}/>
           <Route path="/cadastro" element={<Register />}/>
+          <Route path="/home" element={<Home />}/>
           {/*
           <Route path="/sessoes/:idFilme" element={<SecondPage time={timeTable} setTime={setTimeTable}/>}/>
           <Route path="/assentos/:idSessao" element={<ThirdPage ticket={ticketDetails} setTicket={setTicketDetails}/>}/>
