@@ -20,10 +20,11 @@ export default function Login() {
 const LoginDiv = styled.div`
     display:flex;
     flex-direction: column;
+    justify-content: center;
     width:100%;
     height:100%;
     min-height:100vh;
-    padding:159px 25px 0px 25px;
+    padding:0px 25px 0px 25px;
     background-color:#8c11be;
 `;
 
