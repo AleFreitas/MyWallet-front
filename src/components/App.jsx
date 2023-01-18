@@ -5,6 +5,7 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 import Home from '../pages/Home';
+import NewOperation from '../pages/NewOperation';
 
 export default function App() {
   return (
@@ -15,6 +16,8 @@ export default function App() {
           <Route path="/" element={<Login />}/>
           <Route path="/cadastro" element={<Register />}/>
           <Route path="/home" element={<Home />}/>
+          <Route path="/nova-entrada" element={<NewOperation operation="entry"/>}/>
+          <Route path="/nova-saida" element={<NewOperation operation="exit"/>}/>
           {/*
           <Route path="/sessoes/:idFilme" element={<SecondPage time={timeTable} setTime={setTimeTable}/>}/>
           <Route path="/assentos/:idSessao" element={<ThirdPage ticket={ticketDetails} setTicket={setTicketDetails}/>}/>
