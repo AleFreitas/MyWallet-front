@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 export default function RegisterForms() {
     const [form, setForm] = React.useState({
@@ -8,17 +10,34 @@ export default function RegisterForms() {
         name: '',
         passwordConfirm: ''
     })
+    const navigate = useNavigate()
+    const [submited, setSubmited] = React.useState(false)
 
     function handleForm(e) {
         setForm({ ...form, [e.target.name]: e.target.value })
     }
-
-    function doRegister() {
-        console.log("this function does the register operation")
+    function failedRegister(e){
+        alert(e.response.data.message)
+        console.log(e.response)
+        setSubmited(false)
+    }
+    function doRegister(e) {
+        setSubmited(true)
+        e.preventDefault();
+        if(form.password !== form.passwordConfirm){
+            return alert("senhas diferentes")
+        }
+        const loginPost = axios.post("https://projeto14-mywallet.onrender.com/sign-up", {
+			email: form.email,
+            name: form.name,
+            password: form.password
+		})
+		loginPost.then(() => navigate("/"))
+        loginPost.catch((e) => failedRegister(e))
     }
     return (
         <RegisterFormDiv>
-            <form>
+            <form onSubmit={doRegister}>
                 <input
                     disabled={false}
                     name="name"
@@ -48,7 +67,7 @@ export default function RegisterForms() {
                 />
                 <input
                     disabled={false}
-                    name="password-Confirmation"
+                    name="passwordConfirm"
                     type="password"
                     required
                     placeholder="Confirme sua senha"

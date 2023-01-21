@@ -1,22 +1,43 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 export default function LoginForms() {
     const [form, setForm] = React.useState({
         email: '',
         password: ''
     })
+    const navigate = useNavigate()
+    const [submited, setSubmited] = React.useState(false)
 
     function handleForm(e) {
         setForm({ ...form, [e.target.name]: e.target.value })
     }
 
-    function doLogin() {
-        console.log("this function does the login operation")
+    function failedLogin(e) {
+        alert(e.response.data)
+        setSubmited(false)
+    }
+
+    function didLogin(a) {
+        navigate("/home")
+    }
+
+    function doLogin(e) {
+        setSubmited(true)
+        e.preventDefault();
+        const postLogin = axios.post("https://projeto14-mywallet.onrender.com/sign-in", {
+            email: form.email,
+            password: form.password
+        })
+        // se der tudo certo com a requisição, vai para a página home
+        postLogin.then((answer) => didLogin(answer))
+        postLogin.catch((error) => failedLogin(error))
     }
     return (
         <LoginFormDiv>
-            <form>
+            <form onSubmit={doLogin}>
                 <input
                     disabled={false}
                     name="email"
