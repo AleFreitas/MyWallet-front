@@ -1,27 +1,67 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+import { AuthContext } from "../providers/auth";
 
 export default function OperationForms(props) {
     const [form, setForm] = React.useState({
         value: '',
         description: ''
     })
+    const { token } = React.useContext(AuthContext)
+    const config = {
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    }
+    const navigate = useNavigate()
+    const [submited, setSubmited] = React.useState(false)
+
 
     function handleForm(e) {
         setForm({ ...form, [e.target.name]: e.target.value })
     }
 
-    function doEntry() {
-        console.log("this function starts Entry operation")
+    function doEntry(e) {
+        setSubmited(true)
+        e.preventDefault();
+        console.log("this function starts Exit operation")
+        const postEntry = axios.post("https://projeto14-mywallet.onrender.com/new-entry", {
+            value: form.value,
+            description: form.description
+        },config)
+        // se der tudo certo com a requisição, vai para a página home
+        postEntry.then((answer) => success(answer))
+        postEntry.catch((error) => fail(error))
     }
 
-    function doExit() {
+    function doExit(e) {
+        setSubmited(true)
+        e.preventDefault();
         console.log("this function starts Exit operation")
+        const postExit = axios.post("https://projeto14-mywallet.onrender.com/new-exit", {
+            value: form.value,
+            description: form.description
+        },config)
+        // se der tudo certo com a requisição, vai para a página home
+        postExit.then((answer) => success(answer))
+        postExit.catch((error) => fail(error))
+    }
+
+    function success(e){
+        setSubmited(false)
+        navigate("/home")
+    }
+
+    function fail(e){
+        alert(e.response.data)
+        setSubmited(false)
     }
 
     return (
         <OperationFormDiv>
-            <form>
+            <form onSubmit={props.operation === "entry" ? doEntry : doExit}>
                 <input
                     disabled={false}
                     name="value"
