@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
+import WalletLog from "../components/WalletLog";
 
 export default function Home() {
     return (
@@ -8,15 +9,7 @@ export default function Home() {
                 <p>Olá, Fulano</p>
                 <ion-icon name="exit-outline"></ion-icon>
             </HomeHeader>
-            <WalletLog>
-                <Log className="EmptyLog">
-                    <p>Não há registros de entrada ou saída</p>
-                </Log>
-                <Balance display={"none"}>
-                    <p>SALDO</p>
-                    <span>2849.96</span>
-                </Balance>
-            </WalletLog>
+            <WalletLog/>
             <EntryDiv>
                 <ButtonDiv>
                     <ion-icon name="add-circle-outline"></ion-icon>
@@ -59,61 +52,6 @@ const HomeHeader = styled.div`
     ion-icon{
         width:28px;
         height:28px;
-    }
-`;
-
-const WalletLog = styled.div`
-    background-color: #FFFFFF;
-    width:100%;
-    height:100vh;
-    min-height: 40px;
-    border-radius: 5px;
-    padding:23px 12px 0px 12px;
-    position:relative;
-    .EmptyLog{
-        display:flex;
-        justify-content: center;
-        align-items: center;
-        font-family: 'Raleway',sans-serif;
-        font-size: 20px;
-        font-weight: 400;
-        text-align: center;
-        p{
-            height: 46px;
-            width: 180px;
-            color:#868686;
-        }
-    }
-`;
-
-const Log = styled.div`
-    height:90%;
-    word-break: break-word;
-    overflow-x: hidden;
-    overflow-y: auto;
-`;
-
-const Balance = styled.div`
-    position:absolute;
-    display:${props => props.display};
-    justify-content: space-between;
-    align-items: center;
-    left:0;
-    bottom:0;
-    width:100%;
-    height:32px;
-    padding:0px 15px 0px 15px;
-    p{
-        font-family: 'Raleway',sans-serif;
-        font-size: 17px;
-        font-weight: 700;
-        color:#000000;
-    }
-    span{
-        font-family: 'Raleway',sans-serif;
-        font-size: 17px;
-        font-weight: 400;
-        color:#03AC00;
     }
 `;
 
