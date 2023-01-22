@@ -2,12 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import { AuthContext } from "../providers/auth";
 
 export default function LoginForms() {
     const [form, setForm] = React.useState({
         email: '',
         password: ''
     })
+    const { setToken } = React.useContext(AuthContext)
     const navigate = useNavigate()
     const [submited, setSubmited] = React.useState(false)
 
@@ -21,6 +23,7 @@ export default function LoginForms() {
     }
 
     function didLogin(a) {
+        setToken(a.data)
         navigate("/home")
     }
 
