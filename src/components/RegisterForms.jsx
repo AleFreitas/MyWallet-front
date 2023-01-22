@@ -103,6 +103,7 @@ const RegisterFormDiv = styled.div`
             }
         }
         button{
+            cursor:pointer;
             height: 46px;
             width: 100%;
             border:none;
