@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import WalletLog from "../components/WalletLog";
+import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
+    const navigate = useNavigate()
     return (
         <HomeDiv>
             <HomeHeader>
@@ -11,11 +13,11 @@ export default function Home() {
             </HomeHeader>
             <WalletLog/>
             <EntryDiv>
-                <ButtonDiv>
+                <ButtonDiv onClick={()=>{navigate("/nova-entrada")}}>
                     <ion-icon name="add-circle-outline"></ion-icon>
                     <p>Nova entrada</p>
                 </ButtonDiv>
-                <ButtonDiv>
+                <ButtonDiv onClick={()=>{navigate("/nova-saida")}}>
                     <ion-icon name="remove-circle-outline"></ion-icon>
                     <p>Nova saída</p>
                 </ButtonDiv>
@@ -73,6 +75,7 @@ const ButtonDiv = styled.div`
     font-weight: 700;
     color:#FFFFFF;
     background-color: #A328D6;
+    cursor:pointer;
     p{
         height: 40px;
         width: 64px;
