@@ -8,6 +8,7 @@ import { AuthContext } from '../providers/auth';
 
 export default function Home() {
     const { token } = React.useContext(AuthContext)
+    const { setToken } = React.useContext(AuthContext)
     const navigate = useNavigate()
     const [operations, setOperations] = React.useState([])
     const [userName, setUserName] = React.useState("")
@@ -30,7 +31,10 @@ export default function Home() {
         <HomeDiv>
             <HomeHeader>
                 <p>{`Olá, ${userName}`}</p>
-                <ion-icon name="exit-outline"></ion-icon>
+                <ion-icon name="exit-outline" onClick={()=>{
+                    setToken("")
+                    navigate("/")
+                }}></ion-icon>
             </HomeHeader>
             <WalletLog operations={operations} balance={userBalance}/>
             <EntryDiv>
@@ -73,6 +77,7 @@ const HomeHeader = styled.div`
         font-weight: 700;
     }
     ion-icon{
+        cursor:pointer;
         width:28px;
         height:28px;
     }
