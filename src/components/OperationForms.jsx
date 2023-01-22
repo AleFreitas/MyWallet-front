@@ -26,7 +26,6 @@ export default function OperationForms(props) {
     function doEntry(e) {
         setSubmited(true)
         e.preventDefault();
-        console.log("this function starts Exit operation")
         const postEntry = axios.post("https://projeto14-mywallet.onrender.com/new-entry", {
             value: form.value,
             description: form.description
@@ -39,7 +38,6 @@ export default function OperationForms(props) {
     function doExit(e) {
         setSubmited(true)
         e.preventDefault();
-        console.log("this function starts Exit operation")
         const postExit = axios.post("https://projeto14-mywallet.onrender.com/new-exit", {
             value: form.value,
             description: form.description

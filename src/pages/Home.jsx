@@ -1,17 +1,38 @@
 import { Link } from "react-router-dom";
+import React from 'react';
 import styled from 'styled-components';
 import WalletLog from "../components/WalletLog";
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { AuthContext } from '../providers/auth';
 
 export default function Home() {
+    const { token } = React.useContext(AuthContext)
     const navigate = useNavigate()
+    const [operations, setOperations] = React.useState([])
+    const [userName, setUserName] = React.useState("")
+    const [userBalance, setUserBalance] = React.useState("")
+    const config = {
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    }
+    React.useEffect(() => {
+        const getOperations = axios.get("https://projeto14-mywallet.onrender.com/user-balance", config);
+        getOperations.then(ans => {
+            console.log(ans)
+            setOperations(ans.data.operationList);
+            setUserName(ans.data.user)
+            setUserBalance(ans.data.balance)
+        });
+    }, []);
     return (
         <HomeDiv>
             <HomeHeader>
-                <p>Olá, Fulano</p>
+                <p>{`Olá, ${userName}`}</p>
                 <ion-icon name="exit-outline"></ion-icon>
             </HomeHeader>
-            <WalletLog/>
+            <WalletLog operations={operations} balance={userBalance}/>
             <EntryDiv>
                 <ButtonDiv onClick={()=>{navigate("/nova-entrada")}}>
                     <ion-icon name="add-circle-outline"></ion-icon>

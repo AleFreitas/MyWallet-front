@@ -4,29 +4,21 @@ import React from 'react';
 import axios from 'axios';
 import { AuthContext } from '../providers/auth';
 
-export default function WalletLog() {
-    const { token } = React.useContext(AuthContext)
-    const [operations, setOperations] = React.useState([])
-    const config = {
-        headers: {
-            "Authorization": `Bearer ${token}`
-        }
-    }
-    React.useEffect(() => {
-        const getOperations = axios.get("https://projeto14-mywallet.onrender.com/user-balance", config);
-        getOperations.then(ans => {
-            console.log(ans)
-            setOperations(ans.data);
-        });
-    }, []);
+export default function WalletLog(props) {
     return (
         <WalletLogDiv>
-            <Log className="EmptyLog">
-                <p>Não há registros de entrada ou saída</p>
+            <Log className={props.operations.length === 0 ? "EmptyLog" : ""}>
+                {props.operations.length === 0 ? <p>Não há registros de entrada ou saída</p> : props.operations.map(i =>
+                    <Operation>
+                        <Data>{i.time}</Data>
+                        <Name>{i.description}</Name>
+                        <Price color={i.type === "entry" ? "#03AC00" : "#C70000"}>{parseInt(i.value).toFixed(2)}</Price>
+                    </Operation>
+                )}
             </Log>
-            <Balance display={"none"}>
+            <Balance display={props.operations.length === 0 ? "none" : "flex"}>
                 <p>SALDO</p>
-                <span>2849.96</span>
+                <span>{parseInt(props.balance).toFixed(2)}</span>
             </Balance>
         </WalletLogDiv>
     )
@@ -61,6 +53,8 @@ const Log = styled.div`
     word-break: break-word;
     overflow-x: hidden;
     overflow-y: auto;
+    display:flex;
+    flex-direction: column;
 `;
 
 const Balance = styled.div`
@@ -85,4 +79,35 @@ const Balance = styled.div`
         font-weight: 400;
         color:#03AC00;
     }
+`;
+
+const Operation = styled.div`
+    display: flex;
+    font-family: 'Raleway',sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    margin-bottom:20px;
+`;
+
+const Data = styled.div`
+    color: #C6C6C6;
+    width: 48px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+`;
+const Name = styled.div`
+    width:80%;
+    color:#000000;
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+`;
+const Price = styled.div`
+    width: 72px;
+    color: ${props => props.color};
+    display:flex;
+    justify-content: flex-end;
+    align-items: center;
 `;
