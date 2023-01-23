@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { AuthContext } from "../providers/auth";
+import Loading from "./Loading";
 
 export default function OperationForms(props) {
     const [form, setForm] = React.useState({
@@ -83,7 +84,7 @@ export default function OperationForms(props) {
                 <button
                     disabled={false}
                     type="submit"
-                >{props.operation === "entry" ? "Salvar entrada" : "Salvar saída"}</button>
+                >{submited ? <Loading /> : (props.operation === "entry" ? "Salvar entrada" : "Salvar saída")}</button>
             </form>
         </OperationFormDiv>
     );

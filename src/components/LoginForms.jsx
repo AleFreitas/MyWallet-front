@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { AuthContext } from "../providers/auth";
+import Loading from "./Loading";
 
 export default function LoginForms() {
     const [form, setForm] = React.useState({
@@ -62,7 +63,7 @@ export default function LoginForms() {
                 <button
                     disabled={false}
                     type="submit"
-                >Entrar</button>
+                >{submited ? <Loading /> : "Entrar"}</button>
             </form>
         </LoginFormDiv>
     );

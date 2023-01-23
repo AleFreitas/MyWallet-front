@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import Loading from "./Loading";
 
 export default function RegisterForms() {
     const [form, setForm] = React.useState({
@@ -76,7 +77,7 @@ export default function RegisterForms() {
                 <button
                     disabled={false}
                     type="submit"
-                >Cadastrar</button>
+                >{submited ? <Loading /> : "Cadastrar"}</button>
             </form>
         </RegisterFormDiv>
     );
