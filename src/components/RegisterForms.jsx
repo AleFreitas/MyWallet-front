@@ -27,7 +27,7 @@ export default function RegisterForms() {
         if(form.password !== form.passwordConfirm){
             return alert("senhas diferentes")
         }
-        const loginPost = axios.post("https://projeto14-mywallet.onrender.com/sign-up", {
+        const loginPost = axios.post(`${process.env.REACT_APP_API_URL}sign-up`, {
 			email: form.email,
             name: form.name,
             password: form.password

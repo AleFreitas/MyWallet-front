@@ -19,7 +19,7 @@ export default function Home() {
         }
     }
     React.useEffect(() => {
-        const getOperations = axios.get("https://projeto14-mywallet.onrender.com/user-balance", config);
+        const getOperations = axios.get(`${process.env.REACT_APP_API_URL}user-balance`, config);
         getOperations.then(ans => {
             console.log(ans)
             setOperations(ans.data.operationList);

@@ -27,7 +27,7 @@ export default function OperationForms(props) {
     function doEntry(e) {
         setSubmited(true)
         e.preventDefault();
-        const postEntry = axios.post("https://projeto14-mywallet.onrender.com/new-entry", {
+        const postEntry = axios.post(`${process.env.REACT_APP_API_URL}new-entry`, {
             value: form.value,
             description: form.description
         },config)
