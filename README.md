@@ -3,6 +3,25 @@ Front-end application that implements a virtual wallet. Feel free to test or use
 
 If you are interested on this Web App API follow this link: [My API Link](https://github.com/AleFreitas/projeto14-mywallet-back)
 
+## Install
+To use this project on your machine, follow these steps:
+
+Clone this repository to your terminal:
+```
+git clone https://github.com/AleFreitas/projeto14-mywallet-back/edit/master/README.md
+```
+run this command on your terminal to install all packages
+```
+npm i
+```
+start testing
+```
+npm start
+```
+
+## Deployment
+The application has been deployed on Vercel. You can access it using the following link: [MyWallet Deployment](https://projeto14-mywallet-front-eight-xi.vercel.app)
+
 ## Features
 - User can sign-up
 
@@ -23,23 +42,3 @@ If you are interested on this Web App API follow this link: [My API Link](https:
 - User can make withdrawals from his account.
 
 ![image](https://github.com/AleFreitas/projeto14-mywallet-front/assets/83618808/2a73d136-fad6-49aa-935f-6941928c582e)
-
-
-## Install
-To use this project on your machine, follow these steps:
-
-Clone this repository to your terminal:
-```
-git clone https://github.com/AleFreitas/projeto14-mywallet-back/edit/master/README.md
-```
-run this command on your terminal to install all packages
-```
-npm i
-```
-start testing
-```
-npm start
-```
-
-## Deployment
-The application has been deployed on Vercel. You can access it using the following link: [MyWallet Deployment](https://projeto14-mywallet-front-eight-xi.vercel.app)
