@@ -2,8 +2,26 @@
 Front-end application that implements a virtual wallet. Feel free to test or use it.
 
 ## Features
-- User can create an account
-- User can create deposits and withdrawals on their account
+- User can sign-up
+
+![image](https://github.com/AleFreitas/projeto14-mywallet-front/assets/83618808/2ced5ff9-1445-4984-b1da-c96f01b40f05)
+
+- User can sign-in
+
+![image](https://github.com/AleFreitas/projeto14-mywallet-front/assets/83618808/477abfa9-35f7-4a9e-9154-b326214acb01)
+
+- User can see all of his account transactions
+
+![image](https://github.com/AleFreitas/projeto14-mywallet-front/assets/83618808/1d20c514-6364-411a-9b92-242059420187)
+
+- User can make new entries on his account
+
+![image](https://github.com/AleFreitas/projeto14-mywallet-front/assets/83618808/e81a648f-5483-46be-ac61-c54f8dc2e67b)
+
+- User can make withdrawals from his account.
+
+![image](https://github.com/AleFreitas/projeto14-mywallet-front/assets/83618808/2a73d136-fad6-49aa-935f-6941928c582e)
+
 
 ## Install
 To use this project on your machine, follow these steps:
